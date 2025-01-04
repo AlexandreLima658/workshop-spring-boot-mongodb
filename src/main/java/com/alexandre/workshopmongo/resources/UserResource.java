@@ -2,6 +2,7 @@ package com.alexandre.workshopmongo.resources;
 
 
 import com.alexandre.workshopmongo.domain.User;
+import com.alexandre.workshopmongo.dto.UserDTO;
 import com.alexandre.workshopmongo.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,13 @@ public class UserResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listDTO = list
+                .stream()
+                .map(UserDTO::new)
+                .toList();
+
+        return ResponseEntity.ok().body(listDTO);
     }
 }
