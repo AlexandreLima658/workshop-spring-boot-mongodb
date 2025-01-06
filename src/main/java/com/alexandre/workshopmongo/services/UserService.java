@@ -23,10 +23,12 @@ public class UserService {
     }
 
     public User findById(final String id) {
-
         return repository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
+    }
 
+    public User persist(final User user){
+        return repository.insert(user);
     }
 }
