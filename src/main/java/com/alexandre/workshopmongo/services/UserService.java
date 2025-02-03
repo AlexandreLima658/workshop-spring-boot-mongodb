@@ -2,6 +2,7 @@ package com.alexandre.workshopmongo.services;
 
 
 import com.alexandre.workshopmongo.domain.User;
+import com.alexandre.workshopmongo.dto.UserDTO;
 import com.alexandre.workshopmongo.exception.NotFoundException;
 import com.alexandre.workshopmongo.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,13 @@ public class UserService {
 
     public User persist(final User user){
         return repository.insert(user);
+    }
+
+    public User fromDTO(final UserDTO userDTO) {
+        return new User(
+                userDTO.getId(),
+                userDTO.getName(),
+                userDTO.getEmail()
+        );
     }
 }
