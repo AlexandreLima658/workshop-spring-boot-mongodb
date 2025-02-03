@@ -23,8 +23,7 @@ public class UserService {
     }
 
     public User findById(final String id) {
-        return repository
-                .findById(id)
+        return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
     }
 
