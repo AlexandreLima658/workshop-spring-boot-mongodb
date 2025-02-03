@@ -4,6 +4,7 @@ package com.alexandre.workshopmongo.resources;
 import com.alexandre.workshopmongo.domain.User;
 import com.alexandre.workshopmongo.dto.UserDTO;
 import com.alexandre.workshopmongo.services.UserService;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +49,11 @@ public class UserResource {
 
         return ResponseEntity.created(URI.create(uri)).build();
 
+    }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -32,6 +32,11 @@ public class UserService {
         return repository.insert(user);
     }
 
+    public void delete(final String id) {
+        final var user =  findById(id);
+        this.repository.deleteById(user.getId());
+    }
+
     public User fromDTO(final UserDTO userDTO) {
         return new User(
                 userDTO.getId(),
