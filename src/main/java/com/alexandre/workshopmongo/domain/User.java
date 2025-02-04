@@ -1,10 +1,16 @@
 package com.alexandre.workshopmongo.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+
+@Document(collection = "user")
 public class User implements Serializable {
 
+    @Id
     private String id;
     private String name;
     private String email;
@@ -33,6 +39,18 @@ public class User implements Serializable {
 
     public String getEmail(){
         return email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
