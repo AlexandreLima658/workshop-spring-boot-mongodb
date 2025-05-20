@@ -1,21 +1,27 @@
 package com.alexandre.workshopmongo.domain;
 
+import com.alexandre.workshopmongo.dto.AuthorDTO;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 
+@Document(collection = "post")
 public class Post {
 
+    @Id
     private String id;
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 
     public Post(
             final String id,
             final Date date,
             final String title,
             final String body,
-            final User author
+            final AuthorDTO author
     ) {
         this.id = id;
         this.date = date;
@@ -40,7 +46,7 @@ public class Post {
         return body;
     }
 
-    public User getAuthor() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
@@ -60,7 +66,7 @@ public class Post {
         this.body = body;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 }
