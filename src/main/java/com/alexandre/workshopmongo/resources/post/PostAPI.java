@@ -2,7 +2,6 @@ package com.alexandre.workshopmongo.resources.post;
 
 
 import com.alexandre.workshopmongo.domain.Post;
-import com.alexandre.workshopmongo.dto.UserDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

@@ -17,7 +17,6 @@ public class PostController implements PostAPI{
     @Override
     public ResponseEntity<Post> findById(final String postId) {
         Post post = postService.findById(postId);
-
         return ResponseEntity.ok().body(post);
     }
 }

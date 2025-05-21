@@ -6,7 +6,7 @@ import com.alexandre.workshopmongo.domain.User;
 import com.alexandre.workshopmongo.dto.UserDTO;
 import com.alexandre.workshopmongo.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 import java.util.List;
