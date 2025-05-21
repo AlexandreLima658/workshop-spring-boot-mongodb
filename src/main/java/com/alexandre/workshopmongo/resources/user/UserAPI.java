@@ -1,4 +1,4 @@
-package com.alexandre.workshopmongo.resources;
+package com.alexandre.workshopmongo.resources.user;
 
 
 import com.alexandre.workshopmongo.domain.Post;

@@ -1,9 +1,8 @@
-package com.alexandre.workshopmongo.resources;
+package com.alexandre.workshopmongo.resources.user;
 
 
 import com.alexandre.workshopmongo.domain.Post;
 import com.alexandre.workshopmongo.domain.User;
-import com.alexandre.workshopmongo.dto.AuthorDTO;
 import com.alexandre.workshopmongo.dto.UserDTO;
 import com.alexandre.workshopmongo.services.UserService;
 import org.springframework.http.ResponseEntity;
