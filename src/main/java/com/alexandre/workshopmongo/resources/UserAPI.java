@@ -1,6 +1,7 @@
 package com.alexandre.workshopmongo.resources;
 
 
+import com.alexandre.workshopmongo.domain.Post;
 import com.alexandre.workshopmongo.dto.UserDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -61,6 +62,15 @@ public interface UserAPI {
             @ApiResponse(responseCode = "500", description = "Erro interno servidor")
     })
     void update(@RequestBody UserDTO userDTO, @PathVariable String userId);
+
+    @GetMapping( value = "/{userId}/posts", produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Recuperar os posts de um usuário pelo seu identificador")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Posts recuperado com sucesso"),
+            @ApiResponse(responseCode = "422", description = "A validação falhou"),
+            @ApiResponse(responseCode = "500", description = "Erro interno servidor")
+    })
+    ResponseEntity<List<Post>> findPosts(@PathVariable String userId);
 
 
 

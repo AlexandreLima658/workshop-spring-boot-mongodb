@@ -1,7 +1,9 @@
 package com.alexandre.workshopmongo.resources;
 
 
+import com.alexandre.workshopmongo.domain.Post;
 import com.alexandre.workshopmongo.domain.User;
+import com.alexandre.workshopmongo.dto.AuthorDTO;
 import com.alexandre.workshopmongo.dto.UserDTO;
 import com.alexandre.workshopmongo.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,6 @@ public class UserController implements UserAPI {
 
     @Override
     public ResponseEntity<Void> insert(final UserDTO user) {
-
         User obj = service.fromDTO(user);
         obj = service.persist(obj);
 
@@ -65,4 +66,12 @@ public class UserController implements UserAPI {
 
         this.service.update(user);
     }
+
+    @Override
+    public ResponseEntity<List<Post>> findPosts(String userId) {
+        User user = service.findById(userId);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
+
+
 }
