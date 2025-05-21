@@ -16,14 +16,14 @@ import java.util.TimeZone;
 @Configuration
 public class Instantiation implements CommandLineRunner {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final PostRepository postRepository;
 
     public Instantiation(
             final UserRepository repository,
             final PostRepository postRepository
     ) {
-        this.repository = repository;
+        this.userRepository = repository;
         this.postRepository = postRepository;
     }
 
@@ -32,7 +32,7 @@ public class Instantiation implements CommandLineRunner {
 
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         date.setTimeZone(TimeZone.getTimeZone("GMT"));
-        repository.deleteAll();
+        userRepository.deleteAll();
         postRepository.deleteAll();
 
         User maria = new User(null, "Maria", "maria@email.com");
@@ -41,13 +41,15 @@ public class Instantiation implements CommandLineRunner {
         User alexandre = new User(null, "Alexandre", "alexandre@gmail.com");
         User liana = new User(null, "Liana", "lia@gmail.com");
 
-        repository.saveAll(Arrays.asList(maria, alex, pedro, alexandre, liana));
+        userRepository.saveAll(Arrays.asList(maria, alex, pedro, alexandre, liana));
 
         Post post1 = new Post(null, date.parse("19/05/2021"), "My new Post", "This is my first post",new AuthorDTO(alexandre));
         Post post2 = new Post(null, date.parse("19/05/2021"), "My new Post", "This is my second post", new AuthorDTO(alexandre));
-        Post post3 = new Post(null, date.parse("21/05/2025"), "This is my new post about today", "Welcome to my channel", new AuthorDTO(alex));
-
 
         postRepository.saveAll(Arrays.asList(post1, post2));
+
+        alexandre.getPosts().addAll(Arrays.asList(post1, post2));
+
+        userRepository.save(alexandre);
     }
 }
