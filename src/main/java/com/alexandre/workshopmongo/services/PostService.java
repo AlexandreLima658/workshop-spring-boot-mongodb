@@ -6,6 +6,8 @@ import com.alexandre.workshopmongo.exception.NotFoundException;
 import com.alexandre.workshopmongo.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -18,5 +20,10 @@ public class PostService {
     public Post findById(final String id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Post não encontrado"));
+    }
+
+    public List<Post> findByTitle(final String text) {
+
+        return postRepository.findByTitleContainingIgnoreCase(text);
     }
 }

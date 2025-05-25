@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -25,5 +28,16 @@ public interface PostAPI {
             @ApiResponse(responseCode = "500", description = "Erro interno servidor")
     })
     ResponseEntity<Post> findById(@PathVariable String postId);
+
+    @GetMapping( value = "/titlesearch", produces = APPLICATION_JSON_VALUE)
+    @Operation(summary = "Recuperar um post pelo seu titulo")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Post recuperado com sucesso"),
+            @ApiResponse(responseCode = "422", description = "A validação falhou"),
+            @ApiResponse(responseCode = "500", description = "Erro interno servidor")
+    })
+    ResponseEntity<List<Post>> findByTitle(
+            @RequestParam(value = "text", defaultValue = "") String text
+    );
 
 }
